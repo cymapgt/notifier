@@ -347,17 +347,39 @@ class NotifierEmailSwiftMailerService implements NotifierInterface
         
         //embed the recipients to the Swift Message
         $swiftMessage->setTo($arrMsgTo);
-        
         $arrMsgCC = array();
-        //add recepients on CC
-        foreach($this->messages[($messageId)]["CC"] as $emailUser){
-            if (isset($emailUser['name'])) {
-                $arrMsgCC[($emailUser['email'])] = $emailUser['name'];
-            } else {
-                $arrMsgCC[] = $emailUser['email'];
+        
+        if (array_key_exists('CC', $this->messages[($messageId)])) {
+            //add recepients on CC
+            foreach($this->messages[($messageId)]["CC"] as $emailUser){
+                if (isset($emailUser['name'])) {
+                    $arrMsgCC[($emailUser['email'])] = $emailUser['name'];
+                } else {
+                    $arrMsgCC[] = $emailUser['email'];
+                }            
+            }
+
+            if (count($arrMsgCC)) {
+                $swiftMessage->setCc($arrMsgCC);
             }            
         }
         
+        //add recepients on bCC
+        if (array_key_exists('BCC', $this->messages[($messageId)])) {
+            //add recepients on BCC
+            foreach($this->messages[($messageId)]["BCC"] as $emailUser){
+                if (isset($emailUser['name'])) {
+                    $arrMsgBCC[($emailUser['email'])] = $emailUser['name'];
+                } else {
+                    $arrMsgBCC[] = $emailUser['email'];
+                }            
+            }
+
+            if (count($arrMsgBCC)) {
+                $swiftMessage->setBcc($arrMsgBCC);
+            }            
+        }       
+
         //set ReturnPath
         $returnPath = $this->configuration['RETURN_PATH'];
         $swiftMessage->setReturnPath($returnPath);
@@ -382,7 +404,11 @@ class NotifierEmailSwiftMailerService implements NotifierInterface
         $swiftMessage->setBody($this->messages[($messageId)]["MSG_HTML"], 'text/html');
                 
         //Check for Anti-Flood Setting
-        $antiFloodConfig = $this->configuraition['USE_ANTIFLOOD'];
+        if (array_key_exists('USE_ANTIFLOOD', $this->configuration)) {
+            $antiFloodConfig = $this->configuration['USE_ANTIFLOOD'];            
+        } else {
+            $antiFloodConfig = false;
+        }
         
         //Set AntiFlood Settings
         if ($antiFloodConfig) {
@@ -394,7 +420,11 @@ class NotifierEmailSwiftMailerService implements NotifierInterface
         }
        
         //Check for Throttler Setting
-        $throttlerConfig = $this->configuration['USE_THROTTLER'];
+        if (array_key_exists('USE_THROTTLER', $this->configuration)) {
+            $throttlerConfig = $this->configuration['USE_THROTTLER'];            
+        } else {
+            $throttlerConfig = false;
+        }
         
         //Set AntiFlood Settings
         if ($throttlerConfig) {
