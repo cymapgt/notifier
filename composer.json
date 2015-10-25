@@ -22,8 +22,8 @@
     "description" : "Consistent communication interface allowing switching of 3p communication packages",
     "license" : "proprietary",
     "require" : {
-        "swiftmailer/swiftmailer" : "5.*",
-        "phpmailer/phpmailer" : "5.*"
+        "swiftmailer/swiftmailer" : "^5.2.0",
+        "phpmailer/phpmailer" : "^5.2.0"
     },
     "require-dev" : {
         "phpunit/phpunit" : "4.*"
