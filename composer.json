@@ -20,17 +20,17 @@
     "name" : "cymapgt/notifier",
     "type" : "library",
     "description" : "Consistent communication interface allowing switching of 3p communication packages",
-    "license" : "proprietary",
+    "license" : "BSD 3-clause",
     "require" : {
-        "swiftmailer/swiftmailer" : "^5.2.0",
-        "phpmailer/phpmailer" : "^5.2.0"
+        "swiftmailer/swiftmailer" : "^6.0.0",
+        "phpmailer/phpmailer" : "~5.2.0"
     },
     "require-dev" : {
         "phpunit/phpunit" : "4.*"
     },
     "support" : {
         "email" : "cogana@gmail.com",
-        "source" : "https://bitbucket.org/cymapgt/notifier"
+        "source" : "https://github.com/cymapgt/notifier"
     },
     "authors" : [{
         "name" : "Cyril Ogana",
@@ -38,5 +38,5 @@
         "homepage" : "http://www.cymapk.com",
         "role" : "Maintainer"        
     }],
-    "homepage" : "https://bitbucket.org/cymapgt/notifier"
+    "homepage" : "https://github.com/cymapgt/notifier"
 }

@@ -10,12 +10,12 @@ use cymapgt\core\utility\notifier\abstractclass\NotifierInterface;
  * This interface implements the Notifier interface to provide a standard
  * method of configuring and using SMS Notification library of AfricasTalking
  *
- * PHP versions 5.4+
+ * PHP versions 7.0+
  *
  * @category    utility
  * @package     cymapgt.core.utility.notifier
  * @author      Cyril Ogana <cogana@gmail.com>
- * @copyright   2014 CYMAPK
+ * @copyright   2017 CYMAPK
  */
 
 class NotifierSmsAfricasTalkingService implements NotifierInterface

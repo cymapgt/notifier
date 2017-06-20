@@ -42,7 +42,7 @@ class NotifierEmailSwiftMailerServiceTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $swiftMailerTransport = \Swift_SmtpTransport::newInstance('your.smtp.server.com', 25)
+        $swiftMailerTransport = (new \Swift_SmtpTransport('your.smtp.server.com', 25))
             ->setUsername('username')
             ->setPassword('password');        
         $this->object = new NotifierEmailSwiftMailerService($swiftMailerTransport);
