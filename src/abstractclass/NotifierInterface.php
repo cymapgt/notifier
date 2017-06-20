@@ -6,12 +6,12 @@ namespace cymapgt\core\utility\notifier\abstractclass;
  * 
  * This interface defines the implementations items of Notifier must implement
  *
- * PHP versions 5.4+
+ * PHP versions 7.0+
  *
  * @category    utility
  * @package     cymapgt.core.utility.notifier
  * @author      <cogana@gmail.com>
- * @copyright   2014 CYMAPGT
+ * @copyright   2017 CYMAPGT
  */
 
 interface NotifierInterface

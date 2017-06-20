@@ -10,12 +10,12 @@ use cymapgt\core\utility\notifier\abstractclass\NotifierInterface;
  * This interface implements the Notifier interface to provide a standard
  * method of configuring and using SwiftMailer library from SensioLabs
  * 
- * PHP versions 5.4+
+ * PHP versions 7.0+
  *
  * @category    utility
  * @package     notifier
  * @author      <cogana@gmail.com>
- * @copyright   2014 CYMAPGT
+ * @copyright   2017 CYMAPGT
  */
 
 class NotifierEmailSwiftMailerService implements NotifierInterface
@@ -66,7 +66,7 @@ class NotifierEmailSwiftMailerService implements NotifierInterface
      * function __construct() - Constructor method
      */
     public function __construct(\Swift_SmtpTransport $swiftMailerTransport){
-        $this->mailHandler = \Swift_Mailer::newInstance($swiftMailerTransport);
+        $this->mailHandler = new \Swift_Mailer($swiftMailerTransport);
     }
 
     

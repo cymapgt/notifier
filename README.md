@@ -58,7 +58,7 @@ These settings can be pulled from database or hard coded. User the same smtp use
 ### 1.2.2 Build your Notifier Class and Send the messages ###
 
     //declare namespace usage
-    use cymapgt\core\utility\notifier\NotifierEmailSiftMailerService;
+    use cymapgt\core\utility\notifier\NotifierEmailSwiftMailerService;
 
     //create notifier object. The swiftMailerTransport object we pass to it is the one we created in autoloader
     $notifierObj = new NotifierEmailSwiftMailerService($swiftMailerTransport);
