@@ -3,6 +3,8 @@ namespace cymapgt\core\utility\notifier;
 
 use cymapgt\Exception\NotifierEmailException;
 use cymapgt\core\utility\notifier\abstractclass\NotifierInterface;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 /**
  * class NotifierEmailPhpMailerService
@@ -60,7 +62,7 @@ class NotifierEmailPhpMailerService implements NotifierInterface
      */
     public function __construct(){
         //we embed an instance of PHPMailer to do the hard work
-        $this->mailHandler = new \PHPMailer(true); //exceptions enabled
+        $this->mailHandler = new PHPMailer(true); //exceptions enabled
     }
 
     
@@ -243,7 +245,7 @@ class NotifierEmailPhpMailerService implements NotifierInterface
         
         //phpmailer exception used
         try {
-            $this->mailHandler->Send();            
+            $this->mailHandler->send();            
         } catch (phpmailerException $ex) {
             echo $ex->errorMessage();
         }
@@ -274,7 +276,7 @@ class NotifierEmailPhpMailerService implements NotifierInterface
         
         //phpmailer exception used
         try {
-            $this->mailHandler->Send();            
+            $this->mailHandler->send();            
         } catch (phpmailerException $ex) {
             echo $ex->errorMessage();
         }        
@@ -311,11 +313,11 @@ class NotifierEmailPhpMailerService implements NotifierInterface
         
         //bootstrap some common settings
         if((bool)$this->configuration["IS_SMTP"] === true){
-            $this->mailHandler->IsSMTP();
+            $this->mailHandler->isSMTP();
         }
         
         if((bool) $this->configuration["IS_HTML"] === true){
-            $this->mailHandler->IsHTML(true);
+            $this->mailHandler->isHTML(true);
         }
         
         $this->mailHandler->SMTPDebug  = (int)   $this->configuration["SMTP_DEBUG"];
@@ -346,13 +348,13 @@ class NotifierEmailPhpMailerService implements NotifierInterface
         }
         
         //clear the mailHandler
-        $this->mailHandler->ClearAddresses();
-        $this->mailHandler->ClearAllRecipients();
-        $this->mailHandler->ClearAttachments();
-        $this->mailHandler->ClearBCCs();
-        $this->mailHandler->ClearCCs();
-        $this->mailHandler->ClearCustomHeaders();
-        $this->mailHandler->ClearReplyTos();
+        $this->mailHandler->clearAddresses();
+        $this->mailHandler->clearAllRecipients();
+        $this->mailHandler->clearAttachments();
+        $this->mailHandler->clearBCCs();
+        $this->mailHandler->clearCCs();
+        $this->mailHandler->clearCustomHeaders();
+        $this->mailHandler->clearReplyTos();
         $this->mailHandler->AltBody = "";
         $this->mailHandler->Timeout = 120;
         
@@ -365,7 +367,7 @@ class NotifierEmailPhpMailerService implements NotifierInterface
         
         //add recepients on CC
         foreach($this->messages[($messageId)]["CC"] as $emailUser){
-            $this->mailHandler->AddCC($emailUser["mail"], $emailUser["name"]);
+            $this->mailHandler->addCC($emailUser["mail"], $emailUser["name"]);
         }
         
         //add the subject
