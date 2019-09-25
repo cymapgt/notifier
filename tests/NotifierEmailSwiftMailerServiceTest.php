@@ -41,7 +41,7 @@ class NotifierEmailSwiftMailerServiceTest extends \PHPUnit\Framework\TestCase {
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp() {
+    protected function setUp() : void {
         $swiftMailerTransport = (new \Swift_SmtpTransport('your.smtp.server.com', 25))
             ->setUsername('username')
             ->setPassword('password');        
@@ -52,7 +52,7 @@ class NotifierEmailSwiftMailerServiceTest extends \PHPUnit\Framework\TestCase {
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown() {
+    protected function tearDown() : void {
         
     }
 
